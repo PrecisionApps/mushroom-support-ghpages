@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plant Identifier - Support</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Plant Identifier support: FAQs, troubleshooting, and contact information for the plant identification app.">
+<link rel="icon" href="favicon.ico">
+<style>
+  :root {
+    --bg: linear-gradient(135deg, #0a1628 0%, #0d1b2a 50%, #1b263b 100%);
+    --fg: #e8f4f8;
+    --accent: #4fc3f7;
+    --accent-hover: #29b6f6;
+    --card: rgba(79, 195, 247, 0.08);
+    --card-hover: rgba(79, 195, 247, 0.12);
+    --line: rgba(79, 195, 247, 0.2);
+    --shadow: rgba(0, 0, 0, 0.3);
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Inter, Helvetica, Arial, sans-serif;
+    background: #0a1628;
+    background: var(--bg);
+    color: var(--fg);
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(79, 195, 247, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(41, 182, 246, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 64px 24px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  
+  .app-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 12px rgba(79, 195, 247, 0.4));
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+    background: linear-gradient(135deg, #4fc3f7 0%, #29b6f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
+  
+  .subtitle {
+    font-size: 1.125rem;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 48px 0 24px;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  
+  p {
+    margin: 12px 0;
+    line-height: 1.7;
+  }
+  
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+  
+  .grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-bottom: 32px;
+  }
+  
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px var(--shadow);
+  }
+  
+  .card:hover {
+    background: var(--card-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--shadow);
+  }
+  
+  .card h2 {
+    margin: 0 0 16px;
+    font-size: 1.25rem;
+  }
+  
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 14px;
+    border: 1px solid var(--accent);
+    background: rgba(79, 195, 247, 0.1);
+    color: var(--accent);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+  }
+  
+  .btn:hover {
+    background: var(--accent);
+    color: #0a1628;
+    text-decoration: none;
+    transform: scale(1.02);
+  }
+  
+  details {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 12px 0;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+  }
+  
+  details:hover {
+    background: var(--card-hover);
+  }
+  
+  details[open] {
+    background: var(--card-hover);
+  }
+  
+  summary {
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--accent);
+    list-style: none;
+    user-select: none;
+  }
+  
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  summary::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 8px;
+    transition: transform 0.2s ease;
+  }
+  
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+  
+  details p {
+    margin-top: 12px;
+    padding-left: 20px;
+    opacity: 0.9;
+  }
+  
+  .muted {
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+  
+  footer {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    opacity: 0.6;
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .wrap {
+      padding: 48px 20px;
+    }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does plant identification work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Plant Identifier analyzes your photo and compares features against a plant knowledge base to suggest likely species."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I get better results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Take photos in good lighting, include leaves and flowers if possible, and capture the plant close-up against a simple background."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my photos stored?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your photos are used for identification and are not stored on our servers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I restore purchases?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Plant Identifier → Settings → Restore Purchases. Ensure you're signed into the same Apple ID used for the original purchase."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I cancel a subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open iOS Settings → [Your Name] → Subscriptions → Plant Identifier → Cancel Subscription. Or visit https://reportaproblem.apple.com/ to manage or request refunds."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="app-icon">🌿</div>
+      <h1>Plant Identifier</h1>
+      <p class="subtitle">Support & Help Center</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">📧</span>
+        <h2>Contact</h2>
+        <p>Need help? Reach out directly:</p>
+        <p><strong>Email:</strong><br><a href="mailto:kaanyildiz.iosdev@gmail.com?subject=Plant%20Identifier%20Support">kaanyildiz.iosdev@gmail.com</a></p>
+        <p class="muted">Developer: Kaan YILDIZ</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">💳</span>
+        <h2>Billing & Refunds</h2>
+        <p>Manage subscriptions or request refunds through Apple:</p>
+        <a class="btn" href="https://reportaproblem.apple.com/" target="_blank" rel="noopener">Report a Problem</a>
+        <p class="muted">Note: Subscriptions are managed by Apple. We cannot cancel them directly.</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🔗</span>
+        <h2>Quick Links</h2>
+        <p><a href="./privacy.html">Privacy Policy</a></p>
+        <p><a href="./terms.html">Terms of Service</a></p>
+        <p><a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener">Manage Apple Subscriptions</a></p>
+        <p class="muted">We don't collect personal data.</p>
+      </div>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    
+    <details>
+      <summary>How does plant identification work?</summary>
+      <p>Plant Identifier analyzes your photo and compares visual features against a plant knowledge base to suggest likely species.</p>
+    </details>
+    
+    <details>
+      <summary>How can I improve identification accuracy?</summary>
+      <p>Use natural lighting, capture leaves and flowers in focus, avoid blur, and photograph against a plain background.</p>
+    </details>
+    
+    <details>
+      <summary>Are my photos stored or shared?</summary>
+      <p>Your photos are used only for identification and are not stored on our servers.</p>
+    </details>
+    
+    <details>
+      <summary>How do I restore purchases?</summary>
+      <p>Open Plant Identifier → Settings → Restore Purchases. Ensure you're signed into the same Apple ID used for the original purchase. If issues persist, contact support.</p>
+    </details>
+    
+    <details>
+      <summary>How do I cancel my subscription?</summary>
+      <p>Open iOS Settings → [Your Name] → Subscriptions → Plant Identifier → Cancel Subscription. Or visit <a href="https://reportaproblem.apple.com/">reportaproblem.apple.com</a> to manage subscriptions and request refunds.</p>
+    </details>
+
+    <footer>
+      <p>© 2025 Kaan YILDIZ. All rights reserved.</p>
+      <p><a href="./privacy.html">Privacy Policy</a> · <a href="./terms.html">Terms of Service</a></p>
+      <p class="muted">Plant Identifier is not affiliated with Apple Inc.</p>
+    </footer>
+  </div>
+</body>
+</html>
